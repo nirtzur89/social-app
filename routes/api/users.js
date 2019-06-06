@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs')
+const config = require('config')
+const jwt = require('jsonwebtoken')
 const {
     check,
     validationResult
@@ -63,8 +65,23 @@ router.post('/', [check('name', 'name is required').not().isEmpty(), check('emai
         await user.save()
 
         //return jsonwebtoken
+        const payload = {
+            user: {
+                id: user.id
+            }
+        }
 
-        res.send('user registered')
+        jwt.sign(payload,
+            config.get('jwtSecret'), {
+                expiresIn: 36000000
+            },
+            (err, token) => {
+                if (err) throw err
+                res.json({
+                    token
+                })
+
+            })
     } catch (err) {
         console.error(err.message)
         res.status(500).send('server error')
