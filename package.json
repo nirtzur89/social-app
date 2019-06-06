@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server" : "nodemon server"
+    "server": "nodemon server"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -23,7 +23,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "node server",
-    "server" : "nodemon server"
+    "server": "nodemon server"
   },
   "repository": {
     "type": "git",
