@@ -128,4 +128,48 @@ router.get('/', async (req, res) => {
     }
 })
 
+// get api/profile/user/:user_id
+//get profile by id
+// Public
+router.get('/user/:user_id', async (req, res) => {
+    try {
+        const profile = await Profile.findOne({
+            user: req.params.user_id
+        }).populate('user', ['name', 'avatar'])
+
+        if (!profile) return res.status(400).json({
+            msg: 'Profile not found'
+        })
+
+        res.json(profile)
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('server eror')
+
+    }
+})
+
+// DELETE api/profile
+//delete profile, user and posts
+// Private
+router.delete('/', auth, async (req, res) => {
+    try {
+        //remove profile
+        await Profile.findOneAndRemove({
+            user: req.user.id
+        })
+        //remove user
+        await User.findOneAndRemove({
+            _id: req.user.id
+        })
+        res.json({
+            msg: 'User Deleted'
+        })
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('server eror')
+
+    }
+})
+
 module.exports = router
