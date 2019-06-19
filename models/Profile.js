@@ -56,7 +56,7 @@ const ProfileSchema = new mongoose.Schema({
         }
     }],
     education: [{
-        title: {
+        fieldofstudy: {
             type: String,
             required: true
         },
