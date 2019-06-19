@@ -1,5 +1,7 @@
 {
     "mongoURI": "mongodb+srv://NIRTZUR:0543037034@nirs-uhtat.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "gihubClientId": "2404020f65a924a531af",
+    "githubSecret": "866fe4876afe5b2311e1d16215062a3c27185004"
 
 }
