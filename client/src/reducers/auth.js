@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				isAuthenticated: true,
-				loadin: false,
+				loading: false,
 				user: payload
 			};
 		case REGISTER_SUCCESS:
@@ -37,6 +37,7 @@ export default function(state = initialState, action) {
 			localStorage.removeItem('token');
 			return {
 				...state,
+				token: null,
 				isAuthenticated: false,
 				loading: false
 			};
